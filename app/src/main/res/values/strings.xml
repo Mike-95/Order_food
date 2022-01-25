@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Order Food app with Sqlite</string>
+    <string name="descriptionFood">Meaty portebello mushrooms make for perfect vegetarian burger! </string>
+</resources>
