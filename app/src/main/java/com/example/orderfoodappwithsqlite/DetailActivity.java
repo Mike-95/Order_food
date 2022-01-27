@@ -20,7 +20,10 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        final int image = getIntent().getIntExtra("image", 0);
+        /*
+        this part coming from Main Adapter class
+         */
+        final int image = getIntent().getIntExtra("image", 9);
         final int price = Integer.parseInt(getIntent().getStringExtra("price"));
         final String name = getIntent().getStringExtra("name");
         final String description = getIntent().getStringExtra("desc");
