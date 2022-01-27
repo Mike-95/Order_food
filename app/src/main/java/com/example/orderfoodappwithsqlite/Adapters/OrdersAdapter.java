@@ -31,6 +31,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder
         return new viewHolder(view);
     }
 
+    /*
+    this part of code referred to my order page
+     */
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         final OrdersModel model = list.get(position);

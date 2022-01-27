@@ -53,9 +53,9 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("phone", phone);
         values.put("price", price);
         values.put("image", image);
-        values.put("description", desc);
-        values.put("foodname", foodName);
         values.put("quantity", quantity);
+        values.put("description", desc);
+        values.put("foodName", foodName);
         long id = database.insert("orders", null, values);
         if (id <= 0) {
             return false;
@@ -74,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setOrderNumber(cursor.getInt(0) + "");
                 model.setSoldItemName(cursor.getString(1));
                 model.setOrderImage(cursor.getInt(4));
-               model.setPrice(cursor.getInt(3) + "");
+                model.setPrice(cursor.getInt(3) + "");
                 orders.add(model);
             }
         }
