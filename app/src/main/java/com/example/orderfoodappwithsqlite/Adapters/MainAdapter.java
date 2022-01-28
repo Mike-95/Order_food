@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.orderfoodappwithsqlite.Database.DBHelper;
 import com.example.orderfoodappwithsqlite.DetailActivity;
 import com.example.orderfoodappwithsqlite.Models.MainModel;
 import com.example.orderfoodappwithsqlite.R;
@@ -54,6 +55,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.viewHolder> {
                 mContext.startActivity(intent);
             }
         });
+
+
 
 
     }

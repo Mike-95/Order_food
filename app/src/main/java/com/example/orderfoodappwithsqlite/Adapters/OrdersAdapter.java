@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.orderfoodappwithsqlite.Database.DBHelper;
 import com.example.orderfoodappwithsqlite.DetailActivity;
 import com.example.orderfoodappwithsqlite.Models.OrdersModel;
 import com.example.orderfoodappwithsqlite.R;
@@ -48,10 +50,23 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("id", model.getOrderNumber());
+                intent.putExtra("id", Integer.parseInt(model.getOrderNumber()));
                 intent.putExtra("type", 1);
                 mContext.startActivity(intent);
 
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                DBHelper dbHelper = new DBHelper(mContext);
+                if (dbHelper.deletedOrder(model.getOrderNumber()) > 0){
+                    Toast.makeText(mContext, "Deleted.", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(mContext, "Error.", Toast.LENGTH_SHORT).show();
+                }
+                    return false;
             }
         });
 

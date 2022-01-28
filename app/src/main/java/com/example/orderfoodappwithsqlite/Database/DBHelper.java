@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
                 OrdersModel model = new OrdersModel();
                 model.setOrderNumber(cursor.getInt(0) + "");
-                model.setSoldItemName(cursor.getString(1));
+                model.setSoldItemName(cursor.getString(6));
                 model.setOrderImage(cursor.getInt(4));
                 model.setPrice(cursor.getInt(3) + "");
                 orders.add(model);
@@ -81,5 +81,43 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return orders;
+    }
+
+    public Cursor getOrderById(int id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from orders where id = " + id, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+//        cursor.close();
+//        database.close();
+        return cursor;
+
+    }
+
+    public boolean updateOrder(String name, String phone, int price, int image, String desc, String foodName, int quantity, int id) {
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("phone", phone);
+        values.put("price", price);
+        values.put("image", image);
+        values.put("quantity", quantity);
+        values.put("description", desc);
+        values.put("foodName", foodName);
+        long row = database.update("orders", values, "id", null);
+        if (row <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int deletedOrder(String id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        return database.delete("orders", "id" + id, null);
+
     }
 }
